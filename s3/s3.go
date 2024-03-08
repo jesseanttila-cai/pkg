@@ -213,7 +213,13 @@ func (s *s3client) PutFile(bucket, key, path string) error {
 		return errors.WithStack(err)
 	}
 
-	_, err = s.minioClient.FPutObject(s.ctx, bucket, key, path, minio.PutObjectOptions{ServerSideEncryption: encOpts, PartSize: s.MultipartSize})
+	partSize := s.MultipartSize
+
+	if s.MultipartSize == 0 {
+		partSize = 1024 * 1024 * 1024
+	}
+
+	_, err = s.minioClient.FPutObject(s.ctx, bucket, key, path, minio.PutObjectOptions{ServerSideEncryption: encOpts, PartSize: partSize})
 	if err != nil {
 		return errors.WithStack(err)
 	}

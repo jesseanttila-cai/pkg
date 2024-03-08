@@ -1,15 +1,15 @@
-module github.com/argoproj/pkg
+module github.com/jesseanttila-cai/pkg
 
 go 1.14
 
 require (
+	github.com/argoproj/pkg v0.0.0-00010101000000-000000000000
 	github.com/aws/aws-sdk-go-v2/config v1.27.5
 	github.com/aws/aws-sdk-go-v2/credentials v1.17.5
 	github.com/aws/aws-sdk-go-v2/service/sts v1.28.2
 	github.com/dustin/go-humanize v1.0.1
 	github.com/evilmonkeyinc/jsonpath v0.8.1
 	github.com/felixge/httpsnoop v1.0.4
-	github.com/golang/groupcache v0.0.0-20190129154638-5b532d6fd5ef // indirect
 	github.com/golang/protobuf v1.3.3
 	github.com/grpc-ecosystem/grpc-gateway v1.16.0
 	github.com/minio/minio-go/v7 v7.0.66
@@ -18,7 +18,6 @@ require (
 	github.com/spf13/cobra v1.8.0
 	github.com/stretchr/testify v1.9.0
 	golang.org/x/net v0.22.0
-	gopkg.in/yaml.v2 v2.4.0 // indirect
 	k8s.io/api v0.17.8
 	k8s.io/apimachinery v0.17.8
 	k8s.io/client-go v0.17.8
@@ -49,3 +48,5 @@ replace (
 	k8s.io/metrics => k8s.io/metrics v0.17.8
 	k8s.io/sample-apiserver => k8s.io/sample-apiserver v0.17.8
 )
+
+replace github.com/argoproj/pkg => github.com/jesseanttila-cai/pkg v0.0.0-20240308112246-8bb4fdb68eec
