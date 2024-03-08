@@ -89,6 +89,7 @@ type S3ClientOpts struct {
 	RoleSessionName string
 	UseSDKCreds     bool
 	EncryptOpts     EncryptOpts
+	MultipartSize	uint64
 }
 
 type s3client struct {
@@ -212,7 +213,7 @@ func (s *s3client) PutFile(bucket, key, path string) error {
 		return errors.WithStack(err)
 	}
 
-	_, err = s.minioClient.FPutObject(s.ctx, bucket, key, path, minio.PutObjectOptions{ServerSideEncryption: encOpts})
+	_, err = s.minioClient.FPutObject(s.ctx, bucket, key, path, minio.PutObjectOptions{ServerSideEncryption: encOpts, PartSize: s.MultipartSize})
 	if err != nil {
 		return errors.WithStack(err)
 	}
